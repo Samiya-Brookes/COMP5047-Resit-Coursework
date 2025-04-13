@@ -1,0 +1,18 @@
+
+@startuml
+package "CloudTables System" {
+    [Service Interface] 
+    [Table Management Service] 
+    [Order Management Service] 
+    [Notification Service] 
+    [Cloud Database] 
+}
+
+[Service Interface] --> [Table Management Service] : "Manage Tables API"
+[Service Interface] --> [Order Management Service] : "Place Orders API"
+[Service Interface] --> [Notification Service] : "View Notifications API"
+
+[Order Management Service] --> [Cloud Database] : "Store Order Data"
+[Table Management Service] --> [Cloud Database] : "Store Table Status"
+[Notification Service] --> [Cloud Database] : "Retrieve Notifications"
+@enduml

@@ -1,0 +1,50 @@
+
+@startuml
+class ServiceInterface {
+    - id: String
+    - role: String
+    + login(): Boolean
+    + viewTableStatus(): List
+    + sendOrder(order): Boolean
+}
+
+class TableManagement {
+    - tableId: String
+    - status: String
+    - reservationDetails: String
+    + getStatus(): Boolean
+    + fetchTableData(): List
+    + saveReservation(): Boolean
+}
+
+class OrderManagement {
+    - orderId: String
+    - customerId: String
+    - status: String
+    + placeOrder(): Boolean
+    + modifyOrder(): Boolean
+    + trackOrder(): Order
+}
+
+class NotificationService {
+    - notificationId: String
+    - message: String
+    + sendAlert(): Boolean
+    + getUpdates(): List
+}
+
+class CloudDatabase {
+    - id: String
+    - data: String
+    + saveData(): Boolean
+    + fetchData(): Object
+}
+
+ServiceInterface --> TableManagement : "manages"
+ServiceInterface --> OrderManagement : "places order"
+ServiceInterface --> NotificationService : "receives notifications"
+
+OrderManagement --> CloudDatabase : "stores order data"
+TableManagement --> CloudDatabase : "stores table status"
+NotificationService --> CloudDatabase : "retrieves notifications"
+@enduml

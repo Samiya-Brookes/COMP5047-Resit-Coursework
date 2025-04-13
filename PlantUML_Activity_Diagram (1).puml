@@ -1,0 +1,17 @@
+
+@startuml
+start
+:Service Staff Logs In;
+:View Table Status;
+:Select Customer Order;
+:Confirm Customer Order;
+
+if (Stock Available?) then (Yes)
+    :Validate Stock Availability;
+    :Send Order to Kitchen;
+else (No)
+    :Notify Staff of Unavailability;
+endif
+
+stop
+@enduml

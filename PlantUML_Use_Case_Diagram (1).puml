@@ -1,0 +1,32 @@
+
+@startuml
+left to right direction
+
+actor "Service Staff" as ServiceStaff
+actor "Customer" as Customer
+actor "Kitchen Staff" as KitchenStaff
+actor "Payment System" as PaymentSystem
+
+rectangle "CloudTables System" {
+    usecase "Manage Tables" as UC1
+    usecase "Place Orders" as UC2
+    usecase "View Notifications" as UC3
+    usecase "Handle Payments" as UC4
+}
+
+ServiceStaff --> UC1 : "Update Status"
+ServiceStaff --> UC2 : "Send Order"
+ServiceStaff --> UC3 : "Receive Notifications"
+ServiceStaff --> UC4 : "Process Payments"
+
+Customer --> UC2 : "Place Order"
+Customer --> UC4 : "Make Payment"
+
+KitchenStaff --> UC3 : "Send Order Updates"
+
+PaymentSystem --> UC4 : "Verify Payment"
+
+UC2 .> UC3 : <<includes>>
+UC1 .> UC2 : <<extends>>
+
+@enduml

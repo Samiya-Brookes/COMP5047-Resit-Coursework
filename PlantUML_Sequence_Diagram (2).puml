@@ -1,0 +1,26 @@
+
+@startuml
+participant "Service Staff" as SS
+participant "Service Interface" as SI
+participant "Cloud Database" as DB
+participant "Table Management Service" as TMS
+participant "Order Management Service" as OMS
+participant "Notification Service" as NS
+
+SS -> SI: Login()
+SI -> DB: Validate Credentials()
+DB -> SI: Authentication Result()
+
+SS -> SI: Request Table Status()
+SI -> TMS: Fetch Table Status()
+TMS -> SI: Return Table Status()
+SI -> SS: Display Table Status()
+
+SS -> SI: Place Order()
+SI -> OMS: Send Order()
+OMS -> DB: Store Order Data()
+
+OMS -> NS: Order Ready Notification()
+NS -> SI: Send Notification()
+SI -> SS: Display Notification()
+@enduml
